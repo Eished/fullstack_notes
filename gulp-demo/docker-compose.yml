@@ -1,0 +1,25 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  DOClever:
+    image: lw96/doclever
+    restart: always
+    container_name: "DOClever"
+    ports:
+    - "10000:10000"
+    volumes:
+    - /srv/doclever/file:/root/DOClever/data/file
+    - /srv/doclever/img:/root/DOClever/data/img
+    - /srv/doclever/tmp:/root/DOClever/data/tmp
+    environment:
+    - DB_HOST=mongodb://mongo:27017/DOClever
+    - PORT=10000
+    links:
+    - mongo:mongo   
+  mongo:
+    image: mongo:latest
+    restart: always
+    ports:
+    - "27017:27017"
+    container_name: "mongodb"
+    volumes:
+    - /srv/doclevel/db:/data/db 

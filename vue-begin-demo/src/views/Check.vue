@@ -34,7 +34,8 @@ export default {
       }
     },
     minus(index) {
-      this.list[index].num-- // 无需set方法
+      this.list[index].num-- // 修改数组中的对象,无需set方法
+      // this.$set(this.list, index, this.list[index])
     },
     add(index) {
       this.list[index].num++
