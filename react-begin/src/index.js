@@ -1,14 +1,55 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>
+// function Clock(props){
+//   return (
+//     <div>
+//       <h1>Hello</h1>
+//       <h2>It is {props.date.toLocaleTimeString()} </h2>
+//     </div>
+//   )
+// }
+
+// function tick(){
+//   ReactDOM.render(
+//     <Clock/>,
+//     document.getElementById('root')
+//   )
+// }
+
+// setInterval(tick,1000)
+
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+  componentDidMount(){
+    this.timerId=setInterval(
+      ()=>this.tick(),
+      1000
+    )
+  }
+  componentWillUnmount(){
+    clearInterval(this.timerId)
+  }
+  tick(){
+    this.setState({
+      date: new Date()
+    })
+  }
+  render(){
+    return (
+      <div>
+        <h1>Hello</h1>
+        <h2>It is {this.state.date.toLocaleTimeString()} </h2>
+      </div>
+    )
+  }
 }
 
-// class Welcome extends React.Component {
-//   render() {
-//     return <h1>Hello, {this.props.name}</h1>
-//   }
-// }
-const element = <Welcome name="Sara" age="19" />
-ReactDOM.render(element, document.getElementById('root'))
+
+ReactDOM.render(
+  <Clock />,
+  document.getElementById('root')
+);
