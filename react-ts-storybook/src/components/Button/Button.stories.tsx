@@ -24,3 +24,6 @@ Primary.args = { label: 'Primary 😃', size: 'large' }
 
 export const Secondary = Template.bind({})
 Secondary.args = { ...Primary.args, primary: false, label: 'Secondary 😇' }
+
+export const Tertiary = Template.bind({})
+Tertiary.args = { ...Primary.args, label: '📚📕📈🤓' }

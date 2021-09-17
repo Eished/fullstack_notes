@@ -1,6 +1,7 @@
 import React from 'react'
-import { Meta } from '@storybook/react/types-6-0'
-import { Story } from '@storybook/react'
+// import { Meta } from '@storybook/react/types-6-0'
+// import { Story } from '@storybook/react'
+import { Story, Meta } from '@storybook/react'
 import Hello, { HelloProps } from './Hello'
 
 export default {
@@ -24,3 +25,5 @@ Primary.args = { name: 'Primary 😃', enthusiasmLevel: 1 }
 
 export const Secondary = Template.bind({})
 Secondary.args = { name: 'Primary 😃', enthusiasmLevel: 3 }
+
+Primary.storyName = 'This is my new name!'
