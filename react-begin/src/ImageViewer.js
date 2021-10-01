@@ -18,6 +18,7 @@ class ImageViewer extends Component {
               } else {
                 e.preventDefault()
                 this.props.onClick(e)
+                this.setState({ isLoad: true })
               }
             }}
           >
@@ -26,7 +27,6 @@ class ImageViewer extends Component {
               src={this.props.src}
               alt=""
               onLoad={(e) => {
-                console.log(12341)
                 this.setState({ isLoad: false })
               }}
             />
