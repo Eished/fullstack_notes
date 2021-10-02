@@ -9885,7 +9885,7 @@ web3-utils@1.6.0:
     randombytes "^2.1.0"
     utf8 "3.0.0"
 
-web3@^1.3.6:
+web3@^1.3.6, web3@^1.6.0:
   version "1.6.0"
   resolved "https://registry.npmmirror.com/web3/download/web3-1.6.0.tgz#d8fa0cd9e7bf252f9fe43bb77dc42bc6671affde"
   integrity sha1-2PoM2ee/JS+f5Du3fcQrxmca/94=
