@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Check from '../views/Check.vue'
 import Order from '../views/Order.vue'
 import Moralis from '../views/Moralis.vue'
+import Chartjs from '../views/Chartjs.vue'
 
 Vue.use(VueRouter)
 
@@ -18,6 +19,10 @@ const routes = [
   {
     path: '/',
     component: Moralis,
+  },
+  {
+    path: '/Chartjs',
+    component: Chartjs,
   },
 ]
 
