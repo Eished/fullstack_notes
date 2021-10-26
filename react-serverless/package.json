@@ -1,0 +1,17 @@
+{
+  "name": "react-starter-website",
+  "version": "0.0.2",
+  "description": "",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  },
+  "devDependencies": {
+    "parcel-bundler": "1.12.3"
+  }
+}
