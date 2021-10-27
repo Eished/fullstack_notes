@@ -8,4 +8,7 @@ module.exports = {
     parser: 'babel-eslint',
   },
   // "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
+  rules: {
+    'no-unused-vars': ['off', { vars: 'all', args: 'after-used', ignoreRestSiblings: false }],
+  },
 }

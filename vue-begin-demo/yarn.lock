@@ -2681,7 +2681,7 @@ chardet@^0.7.0:
   resolved "https://registry.nlark.com/chardet/download/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha1-kAlISfCTfy7twkJdDSip5fDLrZ4=
 
-chart.js@2:
+chart.js@2, chart.js@^2.9.3:
   version "2.9.4"
   resolved "https://registry.nlark.com/chart.js/download/chart.js-2.9.4.tgz#0827f9563faffb2dc5c06562f8eb10337d5b9684"
   integrity sha1-CCf5Vj+v+y3FwGVi+OsQM31bloQ=
@@ -2703,6 +2703,20 @@ chartjs-color@^2.1.0:
   dependencies:
     chartjs-color-string "^0.6.0"
     color-convert "^1.9.3"
+
+chartjs-plugin-datalabels@1:
+  version "1.0.0"
+  resolved "https://registry.nlark.com/chartjs-plugin-datalabels/download/chartjs-plugin-datalabels-1.0.0.tgz#5a3d21dde1ed12602dd48c634985a39f431165f1"
+  integrity sha1-Wj0h3eHtEmAt1IxjSYWjn0MRZfE=
+
+chartjs-plugin-dragdata@1.1.3:
+  version "1.1.3"
+  resolved "https://registry.npmmirror.com/chartjs-plugin-dragdata/download/chartjs-plugin-dragdata-1.1.3.tgz#624d4331dd76be981fc993699fcc292ad8d71368"
+  integrity sha1-Yk1DMd12vpgfyZNpn8wpKtjXE2g=
+  dependencies:
+    chart.js "^2.9.3"
+    d3-drag "^1.2.5"
+    d3-selection "^1.4.1"
 
 chartjs-plugin-zoom@^0.7.7:
   version "0.7.7"
@@ -3461,6 +3475,24 @@ cyclist@^1.0.1:
   version "1.0.1"
   resolved "https://registry.nlark.com/cyclist/download/cyclist-1.0.1.tgz#596e9698fd0c80e12038c2b82d6eb1b35b6224d9"
   integrity sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk=
+
+d3-dispatch@1:
+  version "1.0.6"
+  resolved "https://registry.nlark.com/d3-dispatch/download/d3-dispatch-1.0.6.tgz?cache=0&sync_timestamp=1622918261265&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fd3-dispatch%2Fdownload%2Fd3-dispatch-1.0.6.tgz#00d37bcee4dd8cd97729dd893a0ac29caaba5d58"
+  integrity sha1-ANN7zuTdjNl3Kd2JOgrCnKq6XVg=
+
+d3-drag@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.nlark.com/d3-drag/download/d3-drag-1.2.5.tgz#2537f451acd39d31406677b7dc77c82f7d988f70"
+  integrity sha1-JTf0UazTnTFAZne33HfIL32Yj3A=
+  dependencies:
+    d3-dispatch "1"
+    d3-selection "1"
+
+d3-selection@1, d3-selection@^1.4.1:
+  version "1.4.2"
+  resolved "https://registry.nlark.com/d3-selection/download/d3-selection-1.4.2.tgz#dcaa49522c0dbf32d6c1858afc26b6094555bc5c"
+  integrity sha1-3KpJUiwNvzLWwYWK/Ca2CUVVvFw=
 
 d@1, d@^1.0.1:
   version "1.0.1"
