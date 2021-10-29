@@ -7181,6 +7181,11 @@ pako@~1.0.5:
   resolved "https://registry.nlark.com/pako/download/pako-1.0.11.tgz#6c9599d340d54dfd3946380252a35705a6b992bf"
   integrity sha1-bJWZ00DVTf05RjgCUqNXBaa5kr8=
 
+papaparse@^5.3.1:
+  version "5.3.1"
+  resolved "https://registry.nlark.com/papaparse/download/papaparse-5.3.1.tgz?cache=0&sync_timestamp=1622185248745&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fpapaparse%2Fdownload%2Fpapaparse-5.3.1.tgz#770b7a9124d821d4b2132132b7bd7dce7194b5b1"
+  integrity sha1-dwt6kSTYIdSyEyEyt719znGUtbE=
+
 parallel-transform@^1.1.0:
   version "1.2.0"
   resolved "https://registry.npm.taobao.org/parallel-transform/download/parallel-transform-1.2.0.tgz#9049ca37d6cb2182c3b1d2c720be94d14a5814fc"

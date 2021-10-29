@@ -4,6 +4,7 @@ import Check from '../views/Check.vue'
 import Order from '../views/Order.vue'
 import Moralis from '../views/Moralis.vue'
 import Chartjs from '../views/Chartjs.vue'
+import PapaParse from '../views/PapaParse.vue'
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,10 @@ const routes = [
   {
     path: '/Chartjs',
     component: Chartjs,
+  },
+  {
+    path: '/PapaParse',
+    component: PapaParse,
   },
 ]
 

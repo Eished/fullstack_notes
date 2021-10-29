@@ -15,6 +15,10 @@
     <a>
       <router-link to="/Chartjs">Chartjs</router-link>
     </a>
+    |
+    <a>
+      <router-link to="/PapaParse">PapaParse</router-link>
+    </a>
     <br />
     <router-view></router-view>
   </div>
