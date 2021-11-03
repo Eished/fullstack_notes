@@ -5,6 +5,7 @@ import Order from '../views/Order.vue'
 import Moralis from '../views/Moralis.vue'
 import Chartjs from '../views/Chartjs.vue'
 import PapaParse from '../views/PapaParse.vue'
+import Firebase from '../views/Firebase.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,10 @@ const routes = [
   {
     path: '/PapaParse',
     component: PapaParse,
+  },
+  {
+    path: '/Firebase',
+    component: Firebase,
   },
 ]
 

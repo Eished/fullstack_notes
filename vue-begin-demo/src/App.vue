@@ -19,6 +19,10 @@
     <a>
       <router-link to="/PapaParse">PapaParse</router-link>
     </a>
+    |
+    <a>
+      <router-link to="/Firebase">Firebase</router-link>
+    </a>
     <br />
     <router-view></router-view>
   </div>

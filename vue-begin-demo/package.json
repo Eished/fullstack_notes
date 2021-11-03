@@ -13,6 +13,7 @@
     "chartjs-plugin-dragdata": "1.1.3",
     "chartjs-plugin-zoom": "^0.7.7",
     "core-js": "^3.6.5",
+    "firebase": "^9.1.3",
     "hammerjs": "2.0.8",
     "moralis": "^0.0.66",
     "papaparse": "^5.3.1",
