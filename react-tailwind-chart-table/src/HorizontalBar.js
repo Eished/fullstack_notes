@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
-import { Bar, HorizontalBar } from 'react-chartjs-2';
-import { defaults } from 'react-chartjs-2';
+import React, { useRef, useState } from 'react'
+import { Bar, HorizontalBar } from 'react-chartjs-2'
+import { defaults } from 'react-chartjs-2'
 // defaults.font.family = 'Montserrat';
-console.log(defaults);
-defaults.global.defaultFontFamily = 'Arial';
-defaults.global.defaultFontSize = 14;
+console.log(defaults)
+defaults.global.defaultFontFamily = 'Arial'
+defaults.global.defaultFontSize = 14
 
 let data = {
   datasets: [
@@ -37,76 +37,18 @@ let data = {
     'Project-Name-Prod1',
     'Project-Name-Prod1',
   ],
-};
-
-const myData = [
-  {
-    data: [
-      {
-        primary: 'Project Name 1',
-        secondary: 3,
-      },
-      {
-        primary: 'Project Name 2',
-        secondary: 6,
-      },
-    ],
-    label: 'Over a month',
-    color: '#FFFF99',
-    fontSize: '20px',
-  },
-  {
-    data: [
-      {
-        primary: 'Project Name 1',
-        secondary: 7,
-      },
-      {
-        primary: 'Project Name 2',
-        secondary: 1,
-      },
-    ],
-    label: 'Over 3 months',
-    color: '#FF6666',
-  },
-  {
-    data: [
-      {
-        primary: 'Project Name 1',
-        secondary: 13,
-      },
-      {
-        primary: 'Project Name 2',
-        secondary: 2,
-      },
-    ],
-    label: 'Over 12 months',
-    color: '#99CCCC',
-  },
-  {
-    data: [
-      {
-        primary: 'Project Name 1',
-        secondary: 5,
-      },
-      {
-        primary: 'Project Name 2',
-        secondary: 9,
-      },
-    ],
-    label: 'Over 2 years',
-    color: '#666666',
-  },
-];
+}
 
 const HorizontalBarChart = () => {
+  const [detailData, setDetailData] = useState('')
+
   const onClickHandle = (e, item) => {
-    console.log(e, ref.current, item);
+    console.log(e, ref.current, item)
     // ref.current.getElementAtEvent(e);
     // ref.current.getDatasetAtEvent(e);
     // ref.current.getPointsAtEvent(e);
-  };
-  const ref = useRef();
+  }
+  const ref = useRef()
   const options = {
     // events: ['click'],
     // onClick: onClickHandle,
@@ -173,7 +115,7 @@ const HorizontalBarChart = () => {
     tooltips: {
       mode: 'nearest',
     },
-  };
+  }
 
   return (
     <>
@@ -182,13 +124,18 @@ const HorizontalBarChart = () => {
         // width={600}
         getElementAtEvent={(elements, event) => {
           if (event.type === 'click' && elements.length) {
-            console.log('getElementAtEvent', elements[0]);
-            console.log('current', ref.current);
+            console.log('getElementAtEvent', elements[0])
+            // console.log('current', ref.current)
+            const index = elements[0]._index
+            const datasetIndex = elements[0]._datasetIndex
+            const value = data.datasets[datasetIndex].data[index]
+            console.log(value)
+            setDetailData(value)
           }
         }}
         // getDatasetAtEvent={(elements, event) => {
         //   if (event.type === 'click' && elements.length) {
-        //     console.log('getDatasetAtEvent', elements[0]);
+        //     console.log('getDatasetAtEvent', elements)
         //   }
         // }}
         // getElementsAtEvent={(elements, event) => {
@@ -200,8 +147,44 @@ const HorizontalBarChart = () => {
         data={data}
         options={options}
       />
+      {detailData ? (
+        <div
+          className="fixed grid top-0 left-0 w-full h-screen justify-center content-center"
+          onClick={() => {
+            setDetailData('')
+          }}
+        >
+          <div className="grid grid-cols-2 bg-yellow-400 border-2 shadow w-96 h-96 justify-center content-start overflow-auto p-10">
+            <span className="border-2 h-10 bg-red-400">hello</span>
+            <span className="border-2 h-10 bg-red-400">hello</span>
+            <span className="border-2 h-10 bg-red-400">hello</span>
+            <span className="border-2 h-10 bg-red-400">hello</span>
+            <span className="border-2 h-10 bg-red-400">hello</span>
+            <span className="border-2 h-10 bg-red-400">hello</span>
+            <span className="border-2 h-10 bg-red-400">hello</span>
+            <span className="border-2 h-10 bg-red-400">hello</span>
+            <span className="border-2 h-10 bg-red-400">hello</span>
+            <span className="border-2 h-10 bg-red-400">hello</span>
+            <span className="border-2 h-10 bg-red-400">hello</span>
+            <span className="border-2 h-10 bg-red-400">hello</span>
+            <span className="border-2 h-10 bg-red-400">hello</span>
+            <span className="border-2 h-10 bg-red-400">hello</span>
+            <span className="border-2 h-10 bg-red-400">hello</span>
+            <span className="border-2 h-10 bg-red-400">hello</span>
+            <span className="border-2">hello</span>
+            <span className="border-2">hello</span>
+            <span className="border-2">hello</span>
+            <span className="border-2">hello</span>
+            <span className="border-2">hello</span>
+            <span className="border-2">hello</span>
+            <span className="border-2">hello</span>
+          </div>
+        </div>
+      ) : (
+        ''
+      )}
     </>
-  );
-};
+  )
+}
 
-export default HorizontalBarChart;
+export default HorizontalBarChart
