@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 // import './styles.css';
-import { Bar, char, HorizontalBar } from 'react-chartjs-2';
+import { Bar, char, HorizontalBar } from 'react-chartjs-2'
 
 const data = {
   labels: ['Organic', 'Sponsored', 'Organic', 'Sponsored'],
@@ -12,13 +12,13 @@ const data = {
     label: '10/01/2019 - 11/20/2019',
     dataSet: [10000, 225000, 10000, 225000],
   },
-};
+}
 
 export default function StackBarChart() {
   return (
-    <div className='StackBarChart'>
+    <div className="StackBarChart">
       <Bar
-        pointStyle='star'
+        pointStyle="star"
         data={{
           labels: data.labels,
           responsive: true,
@@ -61,6 +61,10 @@ export default function StackBarChart() {
               usePointStyle: true,
             },
           },
+          title: {
+            display: true,
+            text: 'Chart.js Bar Chart',
+          },
           responsive: true,
           maintainAspectRatio: false, // height
           scales: {
@@ -86,8 +90,8 @@ export default function StackBarChart() {
                   maxTicksLimit: 6,
                   padding: 20,
                   callback(n) {
-                    if (n < 1e3) return n;
-                    if (n >= 1e3) return +(n / 1e3).toFixed(1) + 'K';
+                    if (n < 1e3) return n
+                    if (n >= 1e3) return +(n / 1e3).toFixed(1) + 'K'
                   },
                 },
               },
@@ -96,5 +100,5 @@ export default function StackBarChart() {
         }}
       />
     </div>
-  );
+  )
 }

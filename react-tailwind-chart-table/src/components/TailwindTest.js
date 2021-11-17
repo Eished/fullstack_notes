@@ -1,9 +1,9 @@
-import React from 'react';
-import reactDom from 'react-dom';
-import { useTable, useExpanded } from 'react-table';
-import makeData from './makeData';
+import React from 'react'
+import reactDom from 'react-dom'
+import { useTable, useExpanded } from 'react-table'
+import makeData from './makeData'
 
-import getColorFromNum from '../lib';
+import getColorFromNum from '../lib'
 
 function Table({ columns: userColumns, data, renderRowSubComponent }) {
   const {
@@ -21,7 +21,7 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
     },
     useExpanded // We can useExpanded to track the expanded state
     // for sub components too!
-  );
+  )
 
   return (
     <>
@@ -30,23 +30,29 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
       </pre>
       <table {...getTableProps()}>
         <thead>
-          {headerGroups.map(headerGroup => (
+          {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+              {headerGroup.headers.map((column) => (
+                <th className="m" {...column.getHeaderProps()}>
+                  {column.render('Header')}
+                </th>
               ))}
             </tr>
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
           {rows.map((row, i) => {
-            prepareRow(row);
+            prepareRow(row)
             return (
               // Use a React.Fragment here so the table markup is still valid
               <React.Fragment {...row.getRowProps()}>
                 <tr>
-                  {row.cells.map(cell => {
-                    return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
+                  {row.cells.map((cell) => {
+                    return (
+                      <td className="p-1" {...cell.getCellProps()}>
+                        {cell.render('Cell')}
+                      </td>
+                    )
                   })}
                 </tr>
                 {/*
@@ -68,14 +74,14 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
                   </tr>
                 ) : null}
               </React.Fragment>
-            );
+            )
           })}
         </tbody>
       </table>
       <br />
       <div>Showing the first 20 results of {rows.length} rows</div>
     </>
-  );
+  )
 }
 
 export default function TailwindTest() {
@@ -128,10 +134,11 @@ export default function TailwindTest() {
       },
     ],
     []
-  );
+  )
 
-  const data = React.useMemo(() => makeData(10), []);
+  const data = React.useMemo(() => makeData(10), [])
 
+  console.log(data)
   // Create a function that will render our row sub components
   const renderRowSubComponent = React.useCallback(
     ({ row }) => (
@@ -144,11 +151,11 @@ export default function TailwindTest() {
       </pre>
     ),
     []
-  );
+  )
 
   return (
     <>
-      {/* <Table
+      <Table
         columns={columns}
         data={data}
         // We added this as a prop for our table component
@@ -156,8 +163,8 @@ export default function TailwindTest() {
         // it's merely a rendering option we created for
         // ourselves
         renderRowSubComponent={renderRowSubComponent}
-      /> */}
-      <div className='mt-10 bg-gray-400 m-2.5 '>hello world</div>
+      />
+      <div className="mt-10 bg-gray-400 m-2.5 ">hello world</div>
       <br></br>
       <div className={'text-' + (true ? 'red' : 'green') + '-600'}>hello world</div>
       <br></br>
@@ -167,32 +174,32 @@ export default function TailwindTest() {
       <div className={getColorFromNum(3)}>hello world</div>
       <div className={getColorFromNum(4)}>hello world</div>
 
-      <div className='p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4'>
-        <div className='flex-shrink-0'>
-          <img className='h-12 w-12' src='./logo192.png' alt='ChitChat Logo' />
+      <div className="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
+        <div className="flex-shrink-0">
+          <img className="h-12 w-12" src="./logo192.png" alt="ChitChat Logo" />
         </div>
         <div>
-          <div className='text-xl font-medium text-black'>ChitChat</div>
-          <p className='text-gray-500'>You have a new message!</p>
+          <div className="text-xl font-medium text-black">ChitChat</div>
+          <p className="text-gray-500">You have a new message!</p>
         </div>
       </div>
 
-      <div className='py-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6'>
+      <div className="py-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
         <img
-          className='block mx-auto h-24 rounded-full sm:mx-0 sm:flex-shrink-0'
-          src='./logo192.png'
+          className="block mx-auto h-24 rounded-full sm:mx-0 sm:flex-shrink-0"
+          src="./logo192.png"
           alt="Woman's Face"
         />
-        <div className='text-center space-y-2 sm:text-left'>
-          <div className='space-y-0.5'>
-            <p className='text-lg text-black font-semibold'>Erin Lindford</p>
-            <p className='text-gray-500 font-medium'>Product Engineer</p>
+        <div className="text-center space-y-2 sm:text-left">
+          <div className="space-y-0.5">
+            <p className="text-lg text-black font-semibold">Erin Lindford</p>
+            <p className="text-gray-500 font-medium">Product Engineer</p>
           </div>
-          <button className='px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2'>
+          <button className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
             Message
           </button>
         </div>
       </div>
     </>
-  );
+  )
 }

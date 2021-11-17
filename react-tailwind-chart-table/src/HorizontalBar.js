@@ -83,10 +83,10 @@ const HorizontalBarChart = () => {
       fillStyle: '#f0f0f0',
     },
     // plugins: {
-    //   title: {
-    //     display: true,
-    //     text: 'Chart.js Horizontal Bar Chart',
-    //   },
+    // title: {
+    //   display: true,
+    //   text: 'Chart.js Horizontal Bar Chart',
+    // },
     // },
     scales: {
       xAxes: [
@@ -118,9 +118,9 @@ const HorizontalBarChart = () => {
   }
 
   return (
-    <>
+    <div className="h-60">
       <HorizontalBar
-        height={220}
+        // height={220}
         // width={600}
         getElementAtEvent={(elements, event) => {
           if (event.type === 'click' && elements.length) {
@@ -154,13 +154,13 @@ const HorizontalBarChart = () => {
             setDetailData('')
           }}
         >
-          <div className="grid grid-cols-2 bg-yellow-400 border-2 shadow w-96 h-96 justify-center content-start overflow-auto p-10">
-            <span className="border-2 h-10 bg-red-400">hello</span>
-            <span className="border-2 h-10 bg-red-400">hello</span>
-            <span className="border-2 h-10 bg-red-400">hello</span>
-            <span className="border-2 h-10 bg-red-400">hello</span>
-            <span className="border-2 h-10 bg-red-400">hello</span>
-            <span className="border-2 h-10 bg-red-400">hello</span>
+          <div className="grid grid-cols-2 bg-yellow-400 border-2 shadow h-96 justify-center content-start overflow-auto p-10">
+            <span className="border-2 h-10 w-40 bg-red-400 text-2xl">hello</span>
+            <span className="border-2 h-10 bg-red-400 text-base">hello</span>
+            <span className="border-2 h-10 bg-red-400 text-sm">hello</span>
+            <span className="border-2 h-10 bg-red-400 text-sm">hello</span>
+            <span className="border-2 h-10 bg-red-400 text-xs">hello</span>
+            <span className="border-2 h-10 bg-red-400 text-xs">hello</span>
             <span className="border-2 h-10 bg-red-400">hello</span>
             <span className="border-2 h-10 bg-red-400">hello</span>
             <span className="border-2 h-10 bg-red-400">hello</span>
@@ -183,7 +183,7 @@ const HorizontalBarChart = () => {
       ) : (
         ''
       )}
-    </>
+    </div>
   )
 }
 

@@ -44,5 +44,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^9.0.0",
+    "cypress-plugin-snapshots": "^1.4.4",
+    "js-base64": "^2.5.2"
   }
 }
