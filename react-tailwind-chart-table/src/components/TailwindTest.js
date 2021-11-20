@@ -33,7 +33,7 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th className="m" {...column.getHeaderProps()}>
+                <th className="border-2 border-gray-500 border-solid" {...column.getHeaderProps()}>
                   {column.render('Header')}
                 </th>
               ))}
@@ -49,7 +49,7 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
                 <tr>
                   {row.cells.map((cell) => {
                     return (
-                      <td className="p-1" {...cell.getCellProps()}>
+                      <td className="p-2 border-2 border-gray-500 border-solid" {...cell.getCellProps()}>
                         {cell.render('Cell')}
                       </td>
                     )
@@ -155,15 +155,17 @@ export default function TailwindTest() {
 
   return (
     <>
-      <Table
-        columns={columns}
-        data={data}
-        // We added this as a prop for our table component
-        // Remember, this is not part of the React Table API,
-        // it's merely a rendering option we created for
-        // ourselves
-        renderRowSubComponent={renderRowSubComponent}
-      />
+      <div className="grid grid-cols-1">
+        <Table
+          columns={columns}
+          data={data}
+          // We added this as a prop for our table component
+          // Remember, this is not part of the React Table API,
+          // it's merely a rendering option we created for
+          // ourselves
+          renderRowSubComponent={renderRowSubComponent}
+        />
+      </div>
       <div className="mt-10 bg-gray-400 m-2.5 ">hello world</div>
       <br></br>
       <div className={'text-' + (true ? 'red' : 'green') + '-600'}>hello world</div>
