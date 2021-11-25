@@ -9,6 +9,8 @@ import SelectionPaginationTable from './components/SelectionPaginationTable'
 import SearchTable from './components/SearchTable'
 
 import StackBarChart from './StackedBar'
+
+import Avatar from './components/WsrTest'
 // A simple way to support a renderRowSubComponent is to make a render prop
 // This is NOT part of the React Table API, it's merely a rendering
 // option we are creating for ourselves in our table renderer
@@ -33,6 +35,8 @@ function App() {
       <SelectionPaginationTable />
       <div>SearchTable</div>
       <SearchTable />
+      <br></br>
+      <Avatar></Avatar>
     </>
   )
 }

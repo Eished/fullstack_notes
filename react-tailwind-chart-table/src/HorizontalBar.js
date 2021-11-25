@@ -6,7 +6,7 @@ console.log(defaults)
 defaults.global.defaultFontFamily = 'Arial'
 defaults.global.defaultFontSize = 14
 
-let data = {
+let MockData = {
   datasets: [
     {
       label: 'Over a month',
@@ -36,11 +36,39 @@ let data = {
     'Project-Name-Prod1',
     'Project-Name-Prod1',
     'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
+    'Project-Name-Prod1',
   ],
 }
 
 const HorizontalBarChart = () => {
   const [detailData, setDetailData] = useState('')
+  const [data, setData] = useState(MockData)
 
   const onClickHandle = (e, item) => {
     console.log(e, ref.current, item)
@@ -116,11 +144,19 @@ const HorizontalBarChart = () => {
       mode: 'nearest',
     },
   }
-
+  console.log(data.labels.length)
   return (
-    <div className="h-60">
+    <div className="" style={{ position: 'relative', height: 50 + data.labels.length * 22 + 'px' }}>
+      <button
+        onClick={() => {
+          data.labels.pop()
+          setData({ ...data })
+        }}
+      >
+        remove
+      </button>
       <HorizontalBar
-        // height={220}
+        // height={50 + data.labels.length * 22}
         // width={600}
         getElementAtEvent={(elements, event) => {
           if (event.type === 'click' && elements.length) {
