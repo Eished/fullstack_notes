@@ -7,6 +7,8 @@ import PaginationTable from './components/PaginationTable'
 import EditableTable from './components/EditableTable'
 import SelectionPaginationTable from './components/SelectionPaginationTable'
 import SearchTable from './components/SearchTable'
+import ComplexTable from './components/ComplexTable'
+import RowSelectionTable from './components/RowSelectionTable'
 
 import StackBarChart from './StackedBar'
 
@@ -36,6 +38,10 @@ function App() {
       <div>SearchTable</div>
       <SearchTable />
       <br></br>
+      <div>ComplexTable</div>
+      <ComplexTable></ComplexTable>
+      <div>RowSelectionTable</div>
+      <RowSelectionTable></RowSelectionTable>
       <Avatar></Avatar>
     </>
   )

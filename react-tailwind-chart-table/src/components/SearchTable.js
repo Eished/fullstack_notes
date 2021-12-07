@@ -373,7 +373,7 @@ export default function SearchTable() {
     []
   )
 
-  const data = React.useMemo(() => makeData(10000), [])
+  const data = React.useMemo(() => makeData(1000), [])
 
   return (
     <Styles>

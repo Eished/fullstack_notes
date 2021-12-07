@@ -195,7 +195,7 @@ export default function PaginationTable() {
     []
   )
 
-  const data = React.useMemo(() => makeData(100000), [])
+  const data = React.useMemo(() => makeData(1000), [])
 
   return (
     <Styles>

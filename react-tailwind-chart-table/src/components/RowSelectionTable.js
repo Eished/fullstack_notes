@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useTable, usePagination, useRowSelect } from 'react-table'
+import { useTable, useRowSelect } from 'react-table'
 
 import makeData from './makeData'
 
@@ -31,10 +31,6 @@ const Styles = styled.div`
       }
     }
   }
-
-  .pagination {
-    padding: 0.5rem;
-  }
 `
 
 const IndeterminateCheckbox = React.forwardRef(({ indeterminate, ...rest }, ref) => {
@@ -45,7 +41,6 @@ const IndeterminateCheckbox = React.forwardRef(({ indeterminate, ...rest }, ref)
     resolvedRef.current.indeterminate = indeterminate
   }, [resolvedRef, indeterminate])
 
-  console.log(indeterminate, rest, ref)
   return (
     <>
       <input type="checkbox" ref={resolvedRef} {...rest} />
@@ -55,42 +50,63 @@ const IndeterminateCheckbox = React.forwardRef(({ indeterminate, ...rest }, ref)
 
 function Table({ columns, data }) {
   // Use the state and functions returned from useTable to build your UI
+  const newColumns = columns.map((header) => {
+    console.log(header)
+    if ((header.Header === 'Info' && header.columns[2].Header === 'Status') || header.columns[0].Header === 'Age') {
+      header.columns[2].Cell = (props) => {
+        return (
+          <div
+            onClick={() => {
+              console.log(props.column.id, props.row.id, props.value)
+            }}
+          >
+            <input type="checkbox"></input>
+            {props.value}
+          </div>
+        )
+      }
+
+      header.columns[0].Cell = (props) => {
+        return (
+          <div
+            onClick={() => {
+              console.log(props.column.id, props.row.id, props.value)
+            }}
+          >
+            <input type="checkbox"></input>
+            {props.value}
+          </div>
+        )
+      }
+    }
+    return header
+  })
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
+    rows,
     prepareRow,
-    page, // Instead of using 'rows', we'll use page,
-    // which has only the rows for the active page
-
-    // The rest of these things are super handy, too ;)
-    canPreviousPage,
-    canNextPage,
-    pageOptions,
-    pageCount,
-    gotoPage,
-    nextPage,
-    previousPage,
-    setPageSize,
     selectedFlatRows,
-    state: { pageIndex, pageSize, selectedRowIds },
+    state: { selectedRowIds },
   } = useTable(
     {
-      columns,
+      columns: newColumns,
       data,
     },
-    usePagination,
     useRowSelect,
     (hooks) => {
+      console.log(hooks, 'hooks.visibleColumns')
       hooks.visibleColumns.push((columns) => [
         // Let's make a column for selection
         {
           id: 'selection',
           // The header can use the table's getToggleAllRowsSelectedProps method
           // to render a checkbox
-          Header: ({ getToggleAllPageRowsSelectedProps }) => (
+          Header: ({ getToggleAllRowsSelectedProps }) => (
             <div>
-              <IndeterminateCheckbox {...getToggleAllPageRowsSelectedProps()} />
+              <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
+              Choose
             </div>
           ),
           // The cell can use the individual row's getToggleRowSelectedProps method
@@ -98,6 +114,7 @@ function Table({ columns, data }) {
           Cell: ({ row }) => (
             <div>
               <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+              hello
             </div>
           ),
         },
@@ -109,21 +126,6 @@ function Table({ columns, data }) {
   // Render the UI for your table
   return (
     <>
-      <pre>
-        <code>
-          {JSON.stringify(
-            {
-              pageIndex,
-              pageSize,
-              pageCount,
-              canNextPage,
-              canPreviousPage,
-            },
-            null,
-            2
-          )}
-        </code>
-      </pre>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -135,7 +137,7 @@ function Table({ columns, data }) {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {page.map((row, i) => {
+          {rows.slice(0, 10).map((row, i) => {
             prepareRow(row)
             return (
               <tr {...row.getRowProps()}>
@@ -147,71 +149,24 @@ function Table({ columns, data }) {
           })}
         </tbody>
       </table>
-      {/* 
-        Pagination can be built however you'd like. 
-        This is just a very basic UI implementation:
-      */}
-      <div className="pagination">
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {'<<'}
-        </button>{' '}
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {'<'}
-        </button>{' '}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {'>'}
-        </button>{' '}
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {'>>'}
-        </button>{' '}
-        <span>
-          Page{' '}
-          <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>{' '}
-        </span>
-        <span>
-          | Go to page:{' '}
-          <input
-            type="number"
-            defaultValue={pageIndex + 1}
-            onChange={(e) => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0
-              gotoPage(page)
-            }}
-            style={{ width: '100px' }}
-          />
-        </span>{' '}
-        <select
-          value={pageSize}
-          onChange={(e) => {
-            setPageSize(Number(e.target.value))
-          }}
-        >
-          {[10, 20, 30, 40, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
-        <pre>
-          <code>
-            {JSON.stringify(
-              {
-                selectedRowIds: selectedRowIds,
-                'selectedFlatRows[].original': selectedFlatRows.map((d) => d.original),
-              },
-              null,
-              2
-            )}
-          </code>
-        </pre>
-      </div>
+      <p>Selected Rows: {Object.keys(selectedRowIds).length}</p>
+      <pre>
+        <code>
+          {JSON.stringify(
+            {
+              selectedRowIds: selectedRowIds,
+              'selectedFlatRows[].original': selectedFlatRows.map((d) => d.original),
+            },
+            null,
+            2
+          )}
+        </code>
+      </pre>
     </>
   )
 }
 
-export default function SelectionPaginationTable() {
+function RowSelectionTable() {
   const columns = React.useMemo(
     () => [
       {
@@ -252,7 +207,7 @@ export default function SelectionPaginationTable() {
     []
   )
 
-  const data = React.useMemo(() => makeData(1000), [])
+  const data = React.useMemo(() => makeData(10, 3), [])
 
   return (
     <Styles>
@@ -260,3 +215,5 @@ export default function SelectionPaginationTable() {
     </Styles>
   )
 }
+
+export default RowSelectionTable
