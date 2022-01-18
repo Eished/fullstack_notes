@@ -41,5 +41,6 @@ jscoverage_lib/
 bower_components/  
 # dist/ 
 
+.venv/
 .env
 built/
