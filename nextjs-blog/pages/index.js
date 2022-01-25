@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Layout, { siteTitle } from './components/layout'
 import utilStyles from './styles/utils.module.css'
 import { getSortedPostsData } from './lib/posts'
+import Test from './components/Test'
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData()
@@ -18,6 +19,7 @@ export default function Home({ allPostsData }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
+      <Test/>
       <section className={utilStyles.headingMd}>
         <p>My Self</p>
         <p>
@@ -39,6 +41,7 @@ export default function Home({ allPostsData }) {
           ))}
         </ul>
       </section>
+
     </Layout>
   )
 }
