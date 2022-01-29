@@ -1,0 +1,13 @@
+.task-done {
+  text-decoration: line-through;
+  color: rgb(211,211,211);
+}
+
+.task {
+
+}
+
+.task-spinner {
+  font-size:15px;
+  color:rgb(60,141,188)
+}

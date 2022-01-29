@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<div class="container">
+  <div class="row">
+     <div class="col-sm-9">
+         <span [ngClass]="task.isDone ? 'task-done' : 'task'" (click)="enableEditing()" *ngIf="!editable" style="cursor:pointer;" >
+            {{task.name}}
+         </span>
+        <form novalidate *ngIf="editable" [formGroup]="form" (submit)="editName(form)">
+          <div class="form-group" [ngClass]="form.get('updatedTask').hasError('required') && isSubmitted ? 'has-danger' : ''">
+            <input type="text" class="form-control input-sm form-control-danger" id="task" placeholder="Add a task" formControlName="updatedTask" (blur)="disableEditing()" focus/>
+            <div class="form-control-feedback" *ngIf="form.get('updatedTask').hasError('required') && isSubmitted">Task name is required</div>
+          </div>
+        </form>
+     </div>
+     <div class="col-sm-1">
+         <input type="checkbox" (click)="toggleTask()" [(ngModel)]="task.isDone" *ngIf="!toggleTaskProcessing"/>
+         <i class="fa fa-circle-o-notch fa-spin task-spinner" *ngIf="toggleTaskProcessing"></i>
+     </div>
+     <div class="col-sm-1">
+        <span  (click)="deleteTask()" class="fa fa-trash-o" style="cursor:pointer;"></span>
+     </div>
+  </div>
+</div>

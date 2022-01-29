@@ -1,0 +1,15 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <input type="text" name="search" [(ngModel)]="query" placeholder="Search a task" class="form-control" (keyup)="searchTask()"/>
+      </div>
+    </form>
+
+    <div *ngIf="searchRes">
+  <ul class="list-group">
+    <li *ngFor="let task of searchRes" class="list-group-item panel-header">
+      <app-task [task]="task" (notify)="onNotify($event)"></app-task>
+    </li>
+  </ul>
+</div>
+</div>
