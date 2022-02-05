@@ -9,6 +9,7 @@ import SelectionPaginationTable from './components/SelectionPaginationTable'
 import SearchTable from './components/SearchTable'
 import ComplexTable from './components/ComplexTable'
 import RowSelectionTable from './components/RowSelectionTable'
+import ReactTableCard from './components/ReactTableCard'
 
 import StackBarChart from './StackedBar'
 
@@ -41,8 +42,20 @@ function App() {
       <div>ComplexTable</div>
       <ComplexTable></ComplexTable>
       <div>RowSelectionTable</div>
-      <RowSelectionTable></RowSelectionTable>
+      {/* <RowSelectionTable></RowSelectionTable> */}
       <Avatar></Avatar>
+
+      <ReactTableCard
+        title={'hi'}
+        data={[
+          { name: 'test', age: 1, test: 'afhaks' },
+          { name: 'test', age: 2, test: 'afhaks' },
+          { name: 'test', age: 3, test: 'afhaks' },
+          { name: 'test', age: 4, test: 'afhaks' },
+          { name: 'test', age: 0, test: 'afhaks' },
+          { name: 'test', age: 10, test: 'afhaks' },
+        ]}
+      ></ReactTableCard>
     </>
   )
 }
