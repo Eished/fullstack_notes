@@ -44,3 +44,13 @@ branches:
 - `feature` branch is for local development. Use create branch name in a format `feature/{JIRA_TICKET_NUMBER_OR_DESCRIPTION_OF_FEATURE}`
 
 `docker-compose up`
+
+```bash
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+sudo installer -pkg AWSCLIV2.pkg -target /
+aws --version
+sam --version
+aws configure 
+aws dynamodb list-tables --endpoint-url http://localhost:8000
+aws dynamodb delete-table --table-name Movies
+```
