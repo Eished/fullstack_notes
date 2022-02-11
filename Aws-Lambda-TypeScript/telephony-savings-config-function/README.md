@@ -1,4 +1,4 @@
-# sb-telephony-savings-config-function
+# telephony-savings-config-function
 
 > Note: This is a temporary repository for R2c, it will migrate to Sainsburysbank's BitBucket when the LLD is approved.
 
@@ -41,6 +41,6 @@ branches:
 
 - `main` branch keep tract the lastest commit for build/deploy to Sainsburysbank AWS DEV environment.
 - `dev` branch contains commits/pull through pull request. It is integrated and well-tested.
-- `feature` branch is for local development. Use create branch name in a format `feature/{JIRA_TICKET_NUMBER_OR_DESCRIPTION_OF_FEATURE}`, e.g. `feature/TAC-1234-add-lambda-xxx`
+- `feature` branch is for local development. Use create branch name in a format `feature/{JIRA_TICKET_NUMBER_OR_DESCRIPTION_OF_FEATURE}`
 
 `docker-compose up`
