@@ -1,8 +1,15 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom'
 import { Navbar } from './app/Navbar'
 import { Counter } from './features/counter/Counter'
 import './App.css'
+import { PostsList } from './features/posts/PostsList'
+import { AddPostForm } from './features/posts/AddPostForm'
 
 function App() {
   return (
@@ -19,9 +26,27 @@ function App() {
               </section>
             )}
           />
+          <Route
+            exact
+            path="/posts"
+            render={() => (
+              <React.Fragment>
+                <AddPostForm />
+                <PostsList />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/counter"
+            render={() => (
+              <React.Fragment>
+                <Counter />
+              </React.Fragment>
+            )}
+          />
           <Redirect to="/" />
         </Switch>
-        <Counter />
       </div>
     </Router>
   )
