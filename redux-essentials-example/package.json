@@ -1,16 +1,26 @@
 {
   "name": "redux-essentials-example",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@mswjs/data": "^0.8.4",
     "@reduxjs/toolkit": "^1.7.2",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "classnames": "^2.2.6",
+    "date-fns": "^2.12.0",
+    "faker": "^4.1.0",
+    "miragejs": "^0.1.35",
+    "mock-socket": "^9.0.3",
+    "msw": "^0.36.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
-    "react-scripts": "5.0.0"
+    "react-scripts": "5.0.0",
+    "react-router-dom": "^5.1.2",
+    "seedrandom": "^3.0.5",
+    "txtgen": "^2.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -32,5 +42,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "^2.0.2"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
