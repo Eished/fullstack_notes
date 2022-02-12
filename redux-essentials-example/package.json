@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@mswjs/data": "^0.8.4",
+    "@mswjs/data": "^0.9.0",
     "@reduxjs/toolkit": "^1.7.2",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
@@ -14,7 +14,6 @@
     "lodash": "^4.17.21",
     "miragejs": "^0.1.35",
     "mock-socket": "^9.0.3",
-    "msw": "^0.36.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
