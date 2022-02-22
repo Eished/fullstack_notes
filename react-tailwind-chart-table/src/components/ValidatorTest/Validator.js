@@ -5,6 +5,8 @@ export default function Validator() {
   const result = validator.isDate(date, { format: 'DD/MM/YY', strictMode: true })
   console.log(result, date.replace(/-/g, ''))
 
+  console.log('isInt', validator.isInt('', { min: 0, max: 9 }))
+
   return <div>Validator</div>
 }
 
