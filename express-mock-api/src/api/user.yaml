@@ -1,0 +1,40 @@
+# https://swagger.io/specification/#document-structure
+tags:
+  name: Auth
+  description: auth api.
+
+paths:
+  /user/:
+    post:
+      summary: Auth
+      tags: [Auth]
+      requestBody:
+        content:
+          'application/x-www-form-urlencoded':
+            schema:
+              properties:
+                username:
+                  description: username
+                  type: string
+      responses:
+        '200':
+          description: The list of Tests.
+          content:
+            application/json:
+              schema:
+                type: string
+                example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1pa2UiLCJpYXQiOjE2NTQ5NzU4NTksImV4cCI6MTY1NDk3NzY1OX0.UxEHgTWsJT9htCwrcooY_r2d3EGM7vSB9wgcnasdfw23'
+    get:
+      security:
+        - bearerAuth: []
+      summary: Auth
+      tags: [Auth]
+      responses:
+        '200':
+          description: The list of Tests.
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  name: mike
