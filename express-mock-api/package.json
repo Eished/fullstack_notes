@@ -1,17 +1,19 @@
 {
   "name": "mock-api",
   "version": "1.0.0",
-  "description": "This README would normally document whatever steps are necessary to get your application up and running.",
+  "description": "Express mock api",
   "main": "index.js",
   "scripts": {
     "start": "npm run dev",
-    "dev": "nodemon --watch src ./src/index.js"
+    "dev": "nodemon --watch src ./src/index.js",
+    "lint": "eslint --ignore-path .eslintignore --config .eslintrc.js --ext .js,.ts .",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
   },
   "repository": {
     "type": "git",
-    "url": "ecs:ecs-sb-telephony/mock-api.git"
+    "url": "mock-api.git"
   },
-  "author": "",
+  "author": "Eished",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
@@ -24,5 +26,11 @@
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "eslint": "^8.17.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "prettier": "^2.6.2"
   }
 }

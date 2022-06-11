@@ -1,3 +1,4 @@
+/* eslint-disable no-fallthrough */
 var app = require('./app')
 var http = require('http')
 

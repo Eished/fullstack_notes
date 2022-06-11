@@ -74,4 +74,29 @@ router.post('/custAuthLogon', [body('custAuthLogonRq.bankId').notEmpty().isStrin
   }
 })
 
+router.get('/test-err', (req, res) => {
+  const code = parseInt(req.query.code)
+  console.log(code)
+  switch (true) {
+    case code === 401:
+      return res.status(401).json({ err: '401' })
+    case code === 404:
+      return res.status(404).json({ err: '404' })
+    case code === 403:
+      return res.status(403).json({ err: '403' })
+    case code === 500:
+      return res.status(500).json({ err: '500' })
+    case code === 501:
+      return res.status(501).json({ err: '501' })
+    case code === 502:
+      return res.status(502).json({ err: '502' })
+    case code === 503:
+      throw new Error('Error: Test 503')
+
+    default:
+      res.status(400).end('Wrong pramaters!')
+      break
+  }
+})
+
 module.exports = router
