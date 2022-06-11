@@ -3,14 +3,21 @@ tags:
   name: Auth
   description: auth api.
 
+components:
+  securitySchemes:
+    bearerAuth: # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT # optional, arbitrary value for documentation purposes
+
 paths:
-  /user/:
+  /user:
     post:
       summary: Auth
       tags: [Auth]
       requestBody:
         content:
-          'application/x-www-form-urlencoded':
+          application/json:
             schema:
               properties:
                 username:
@@ -38,3 +45,5 @@ paths:
                 type: object
                 example:
                   name: mike
+security:
+  - bearerAuth: [] # use the same name as above

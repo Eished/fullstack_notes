@@ -37,7 +37,7 @@ app.use(
     secret: process.env.TOKEN_SECRET,
     algorithms: ['HS256'],
     credentialsRequired: true,
-  }).unless({ path: ['/api-docs/*'] }),
+  }).unless({ path: ['/api-docs', '/user'] }),
   routeHandle
 )
 
