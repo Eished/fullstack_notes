@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  app:
+    image: app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    tty: true
+    networks:
+      - app-network
+
+  dev:
+    image: dev
+    build:
+      context: .
+      dockerfile: develop.Dockerfile
+    ports:
+      - '3000:3000'
+    tty: true
+
+  prod:
+    image: prod
+    build:
+      context: .
+      dockerfile: produce.Dockerfile
+
+  mongodb:
+    image: mongo:4.1
+    ports:
+      - '27017:27017'
+    networks:
+      - app-network
+    volumes:
+      - ./mongodb_data_container:/data/db
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongodb_data_container:
