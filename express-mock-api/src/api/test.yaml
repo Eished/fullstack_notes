@@ -3,6 +3,17 @@ tags:
   name: Tests
   description: Return Error Tests Api.
 
+components:
+  schemas:
+    errors:
+      type: object
+      properties:
+        err:
+          type: integer
+          description: error status code.
+      example:
+        err: 400
+
 paths:
   /test-err/:
     get:
@@ -21,16 +32,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Book'
+                $ref: '#/components/schemas/errors'
         '500':
           description: The list of Tests.
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  err:
-                    type: integer
-                    description: error status code.
-                example:
-                  err: 400
+                $ref: '#/components/schemas/errors'

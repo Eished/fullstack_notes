@@ -8,7 +8,7 @@
     "dev": "nodemon --watch src src/index.js",
     "lint": "eslint --ignore-path .eslintignore --config .eslintrc.js --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "zip": "npm run lint && npm run format && zip -r backend.zip ./ -x='./node_modules/*'"
+    "zip": "npm run lint && npm run format && zip -r backend.zip ./ -x='./node_modules/*' -x='./.git/*'"
   },
   "repository": {
     "type": "git",
@@ -36,5 +36,8 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "prettier": "^2.6.2"
+  },
+  "engines": {
+    "node": ">=12"
   }
 }
