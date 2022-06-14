@@ -9,3 +9,15 @@ A express mock api project
 ## Start
 
 `yarn start`
+
+## Lint
+
+`yarn lint`
+
+`yarn format`
+
+## Docs
+
+swagger
+
+`localhost:5000/api-docs`

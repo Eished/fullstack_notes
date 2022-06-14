@@ -1,0 +1,41 @@
+# https://swagger.io/specification/#document-structure
+tags:
+  name: Tests
+  description: Return Error Tests Api.
+
+components:
+  schemas:
+    errors:
+      type: object
+      properties:
+        err:
+          type: integer
+          description: error status code.
+      example:
+        err: 400
+
+paths:
+  /test-err/:
+    get:
+      summary: Lists all the Tests
+      tags: [Tests]
+      parameters:
+        - in: query
+          name: code
+          schema:
+            type: integer
+          required: true
+          description: Error code
+      responses:
+        '200':
+          description: The list of Tests.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '500':
+          description: The list of Tests.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'

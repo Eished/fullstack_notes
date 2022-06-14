@@ -3,8 +3,10 @@ const logger = require('morgan')
 const cors = require('cors')
 const path = require('path')
 const createError = require('http-errors')
-require('dotenv').config()
+const { expressjwt: jwt } = require('express-jwt')
 
+// get config vars
+require('dotenv').config()
 const routeHandle = require('./routes/index.js')
 
 const app = express()
@@ -21,14 +23,23 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use(express.static(path.join(__dirname, '../public')))
 
-// Enable CORS
-app.all('/*', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With')
-  next()
-})
+// swagger
+const swaggerUi = require('swagger-ui-express')
+const swaggerJSDoc = require('swagger-jsdoc')
+const options = require('../config/swagger.config')
+const swaggerSpec = swaggerJSDoc(options)
 
-app.use('/', routeHandle)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { explorer: true }))
+
+app.use(
+  '/',
+  jwt({
+    secret: process.env.TOKEN_SECRET,
+    algorithms: ['HS256'],
+    credentialsRequired: true,
+  }).unless({ path: ['/api-docs', '/user'] }),
+  routeHandle
+)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

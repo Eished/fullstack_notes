@@ -2,8 +2,18 @@ const Router = require('express-promise-router')
 const { body, validationResult } = require('express-validator')
 const { SuccessModel, ErrorModel } = require('../model/resModel')
 const { randomNum } = require('../utils/helper')
+const { authenticateToken, generateAccessToken } = require('../auth/auth')
 
 const router = Router()
+
+router.post('/user', (req, res) => {
+  const token = generateAccessToken({ username: req.body.username })
+  res.json(token)
+})
+
+router.get('/user', authenticateToken, (req, res) => {
+  res.json({ user: req.user })
+})
 
 router.post(
   '/custAuthRegistration',
