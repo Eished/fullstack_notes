@@ -1,6 +1,7 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+import Logo from '@/assets/logo.svg?component'
 </script>
 
 <template>
@@ -14,6 +15,7 @@ import TheWelcome from './components/TheWelcome.vue'
 
   <main>
     <TheWelcome />
+    <Logo />
   </main>
 </template>
 
