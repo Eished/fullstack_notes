@@ -36,7 +36,7 @@
     "javascript": "html"
   },
   "[vue]": {
-    "editor.defaultFormatter": "octref.vetur"
+    "editor.defaultFormatter": "Vue.volar"
   },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
