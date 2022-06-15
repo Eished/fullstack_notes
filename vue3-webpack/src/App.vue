@@ -1,20 +1,20 @@
 <template>
   <div>
     <svg-icon icon-class="haizhe"></svg-icon>
-    <!-- <svg-icon icon-class="doufu"></svg-icon> -->
     <HelloWorld />
+    <svg-icon icon-class="doufu"></svg-icon>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import svgIcon from './components/svgIcon/'
+import SvgIcon from './components/svgIcon/'
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    svgIcon
+    SvgIcon
   },
 }
 </script>
