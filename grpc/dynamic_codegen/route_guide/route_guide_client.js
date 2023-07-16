@@ -16,7 +16,7 @@
  *
  */
 
-var PROTO_PATH = __dirname + '/../../../protos/route_guide.proto';
+var PROTO_PATH = __dirname + '../../../protos/route_guide.proto';
 
 var async = require('async');
 var fs = require('fs');
@@ -26,16 +26,17 @@ var _ = require('lodash');
 var grpc = require('@grpc/grpc-js');
 var protoLoader = require('@grpc/proto-loader');
 var packageDefinition = protoLoader.loadSync(
-    PROTO_PATH,
-    {keepCase: true,
-     longs: String,
-     enums: String,
-     defaults: true,
-     oneofs: true
-    });
+  PROTO_PATH,
+  {
+    keepCase: true,
+    longs: String,
+    enums: String,
+    defaults: true,
+    oneofs: true
+  });
 var routeguide = grpc.loadPackageDefinition(packageDefinition).routeguide;
 var client = new routeguide.RouteGuide('localhost:50051',
-                                       grpc.credentials.createInsecure());
+  grpc.credentials.createInsecure());
 
 var COORD_FACTOR = 1e7;
 
@@ -44,21 +45,21 @@ var COORD_FACTOR = 1e7;
  * feature and a point known not to have a feature.
  * @param {function} callback Called when this demo is complete
  */
-function runGetFeature(callback) {
+function runGetFeature (callback) {
   var next = _.after(2, callback);
-  function featureCallback(error, feature) {
+  function featureCallback (error, feature) {
     if (error) {
       callback(error);
       return;
     }
     if (feature.name === '') {
       console.log('Found no feature at ' +
-          feature.location.latitude/COORD_FACTOR + ', ' +
-          feature.location.longitude/COORD_FACTOR);
+        feature.location.latitude / COORD_FACTOR + ', ' +
+        feature.location.longitude / COORD_FACTOR);
     } else {
       console.log('Found feature called "' + feature.name + '" at ' +
-          feature.location.latitude/COORD_FACTOR + ', ' +
-          feature.location.longitude/COORD_FACTOR);
+        feature.location.latitude / COORD_FACTOR + ', ' +
+        feature.location.longitude / COORD_FACTOR);
     }
     next();
   }
@@ -80,7 +81,7 @@ function runGetFeature(callback) {
  * comes in.
  * @param {function} callback Called when this demo is complete
  */
-function runListFeatures(callback) {
+function runListFeatures (callback) {
   var rectangle = {
     lo: {
       latitude: 400000000,
@@ -93,10 +94,10 @@ function runListFeatures(callback) {
   };
   console.log('Looking for features between 40, -75 and 42, -73');
   var call = client.listFeatures(rectangle);
-  call.on('data', function(feature) {
-      console.log('Found feature called "' + feature.name + '" at ' +
-          feature.location.latitude/COORD_FACTOR + ', ' +
-          feature.location.longitude/COORD_FACTOR);
+  call.on('data', function (feature) {
+    console.log('Found feature called "' + feature.name + '" at ' +
+      feature.location.latitude / COORD_FACTOR + ', ' +
+      feature.location.longitude / COORD_FACTOR);
   });
   call.on('end', callback);
 }
@@ -107,11 +108,11 @@ function runListFeatures(callback) {
  * statistics when they are sent from the server.
  * @param {function} callback Called when this demo is complete
  */
-function runRecordRoute(callback) {
+function runRecordRoute (callback) {
   var argv = parseArgs(process.argv, {
     string: 'db_path'
   });
-  fs.readFile(path.resolve(argv.db_path), function(err, data) {
+  fs.readFile(path.resolve(argv.db_path), function (err, data) {
     if (err) {
       callback(err);
       return;
@@ -119,7 +120,7 @@ function runRecordRoute(callback) {
     var feature_list = JSON.parse(data);
 
     var num_points = 10;
-    var call = client.recordRoute(function(error, stats) {
+    var call = client.recordRoute(function (error, stats) {
       if (error) {
         callback(error);
         return;
@@ -137,14 +138,14 @@ function runRecordRoute(callback) {
      * @param {number} lng The longitude to send
      * @return {function(function)} The function that sends the point
      */
-    function pointSender(lat, lng) {
+    function pointSender (lat, lng) {
       /**
        * Sends the point, then calls the callback after a delay
        * @param {function} callback Called when complete
        */
-      return function(callback) {
-        console.log('Visiting point ' + lat/COORD_FACTOR + ', ' +
-            lng/COORD_FACTOR);
+      return function (callback) {
+        console.log('Visiting point ' + lat / COORD_FACTOR + ', ' +
+          lng / COORD_FACTOR);
         call.write({
           latitude: lat,
           longitude: lng
@@ -156,9 +157,9 @@ function runRecordRoute(callback) {
     for (var i = 0; i < num_points; i++) {
       var rand_point = feature_list[_.random(0, feature_list.length - 1)];
       point_senders[i] = pointSender(rand_point.location.latitude,
-                                     rand_point.location.longitude);
+        rand_point.location.longitude);
     }
-    async.series(point_senders, function() {
+    async.series(point_senders, function () {
       call.end();
     });
   });
@@ -169,11 +170,11 @@ function runRecordRoute(callback) {
  * that are sent from the server.
  * @param {function} callback Called when the demo is complete
  */
-function runRouteChat(callback) {
+function runRouteChat (callback) {
   var call = client.routeChat();
-  call.on('data', function(note) {
+  call.on('data', function (note) {
     console.log('Got message "' + note.message + '" at ' +
-        note.location.latitude + ', ' + note.location.longitude);
+      note.location.latitude + ', ' + note.location.longitude);
   });
 
   call.on('end', callback);
@@ -206,7 +207,7 @@ function runRouteChat(callback) {
   for (var i = 0; i < notes.length; i++) {
     var note = notes[i];
     console.log('Sending message "' + note.message + '" at ' +
-        note.location.latitude + ', ' + note.location.longitude);
+      note.location.latitude + ', ' + note.location.longitude);
     call.write(note);
   }
   call.end();
@@ -215,7 +216,7 @@ function runRouteChat(callback) {
 /**
  * Run all of the demos in order
  */
-function main() {
+function main () {
   async.series([
     runGetFeature,
     runListFeatures,
