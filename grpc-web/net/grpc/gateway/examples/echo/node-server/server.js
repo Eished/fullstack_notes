@@ -24,13 +24,14 @@ var _ = require('lodash');
 var grpc = require('@grpc/grpc-js');
 var protoLoader = require('@grpc/proto-loader');
 var packageDefinition = protoLoader.loadSync(
-    PROTO_PATH,
-    {keepCase: true,
-     longs: String,
-     enums: String,
-     defaults: true,
-     oneofs: true
-    });
+  PROTO_PATH,
+  {
+    keepCase: true,
+    longs: String,
+    enums: String,
+    defaults: true,
+    oneofs: true
+  });
 var protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
 var echo = protoDescriptor.grpc.gateway.testing;
 
@@ -38,7 +39,7 @@ var echo = protoDescriptor.grpc.gateway.testing;
  * @param {!Object} call
  * @return {!Object} metadata
  */
-function copyMetadata(call) {
+function copyMetadata (call) {
   var metadata = call.metadata.getMap();
   var response_metadata = new grpc.Metadata();
   for (var key in metadata) {
@@ -51,7 +52,7 @@ function copyMetadata(call) {
  * @param {!Object} call
  * @param {function():?} callback
  */
-function doEcho(call, callback) {
+function doEcho (call, callback) {
   callback(null, {
     message: call.request.message
   }, copyMetadata(call));
@@ -61,7 +62,7 @@ function doEcho(call, callback) {
  * @param {!Object} call
  * @param {function():?} callback
  */
-function doEchoAbort(call, callback) {
+function doEchoAbort (call, callback) {
   callback({
     code: grpc.status.ABORTED,
     message: 'Aborted from server side.'
@@ -71,9 +72,9 @@ function doEchoAbort(call, callback) {
 /**
  * @param {!Object} call
  */
-function doServerStreamingEcho(call) {
+function doServerStreamingEcho (call) {
   var senders = [];
-  function sender(message, interval) {
+  function sender (message, interval) {
     return (callback) => {
       call.write({
         message: message
@@ -94,7 +95,7 @@ function doServerStreamingEcho(call) {
  * methods it serves.
  * @return {!Server} The new server object
  */
-function getServer() {
+function getServer () {
   var server = new grpc.Server();
   server.addService(echo.EchoService.service, {
     echo: doEcho,
@@ -110,7 +111,8 @@ if (require.main === module) {
     '0.0.0.0:9090', grpc.ServerCredentials.createInsecure(), (err, port) => {
       assert.ifError(err);
       echoServer.start();
-  });
+      console.log('server port 9090 start');
+    });
 }
 
 exports.getServer = getServer;
