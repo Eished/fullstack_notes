@@ -46,3 +46,5 @@ bower_components/
 built/
 package-lock.json
 yarn.lock
+*.bin
+__pycache__
