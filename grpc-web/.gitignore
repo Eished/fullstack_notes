@@ -1,3 +1,7 @@
+/node_modules
+dist/
+*_pb.js
+package-lock.json
 .vscode
 bazel-bin
 bazel-genfiles

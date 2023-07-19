@@ -1,0 +1,22 @@
+{
+  "name": "grpc-web-commonjs-example",
+  "version": "0.1.0",
+  "description": "gRPC-Web CommonJS client example",
+  "license": "Apache-2.0",
+  "main": "./src/client.js",
+  "scripts": {
+    "start": "npm run protoc && webpack serve",
+    "protoc": "protoc -I=../protos echo.proto --js_out=import_style=commonjs:./src --grpc-web_out=import_style=commonjs,mode=grpcwebtext:./src"
+  },
+  "dependencies": {
+    "google-protobuf": "~3.14.0",
+    "grpc-web": "~1.4.2",
+    "jquery": "^3.7.0"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.5.3",
+    "webpack": "~5.82.1",
+    "webpack-cli": "~5.1.1",
+    "webpack-dev-server": "^4.15.1"
+  }
+}
