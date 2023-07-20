@@ -5,8 +5,9 @@
   "license": "Apache-2.0",
   "main": "./src/client.js",
   "scripts": {
-    "start": "npm run protoc && webpack serve",
-    "protoc": "protoc -I=../protos echo.proto --js_out=import_style=commonjs:./src --grpc-web_out=import_style=commonjs,mode=grpcwebtext:./src"
+    "start": "npm run protoc2 && webpack serve",
+    "protoc": "protoc -I=../protos echo.proto --js_out=import_style=commonjs:./src --grpc-web_out=import_style=commonjs,mode=grpcwebtext:./src",
+    "protoc2": "protoc -I=../protos login.proto --js_out=import_style=commonjs:./src --grpc-web_out=import_style=commonjs,mode=grpcwebtext:./src"
   },
   "dependencies": {
     "google-protobuf": "~3.14.0",

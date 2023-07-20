@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package pan.general.member;
+
+message LoginRequest {
+  enum LoginType {
+    UNSPECIFIED = 0;
+    MOBILE = 1;
+    HOME = 2;
+    WORK = 3;
+  }
+  enum PhaseType {
+    NONE0 = 0;
+    NONE1 = 1;
+    NONE2 = 2;
+  }
+
+  PhaseType phase = 1;
+  string session = 2;
+  string phaseSessionToken = 3;
+  string phaseCheckExistenceValue = 4;
+  string phaseInputCodeValue = 5;
+  int32 phaseInputCodeQuesIndex = 6;
+  string phaseInputCodeQuesValue = 7;
+  string phaseCheckExistenceCountryCode = 8;
+  string appId = 9;
+  LoginType loginType = 10;
+  string linkToInput = 11;
+}
+
+message LoginResponse {
+  enum LoginType {
+    UNSPECIFIED = 0;
+    MOBILE = 1;
+    HOME = 2;
+    WORK = 3;
+  }
+  enum PhaseType {
+    NONE0 = 0;
+    NONE1 = 1;
+    NONE2 = 2;
+  }
+
+  PhaseType phase = 1;
+  string session = 2;
+  string phaseSessionToken = 3;
+  string phaseCheckExistenceValue = 4;
+  string phaseInputCodeValue = 5;
+  int32 phaseInputCodeQuesIndex = 6;
+  string phaseInputCodeQuesValue = 7;
+  string phaseCheckExistenceCountryCode = 8;
+  string appId = 9;
+  LoginType loginType = 10;
+  string linkToInput = 11;
+}
+
+message Person {
+  string name = 1;
+  int32 id = 2;
+  string email = 3;
+
+  enum PhoneType {
+    UNSPECIFIED = 0;
+    MOBILE = 1;
+    HOME = 2;
+    WORK = 3;
+  }
+
+  message PhoneNumber {
+     string number = 1;
+     PhoneType type = 2;
+  }
+
+  repeated PhoneNumber phones = 4;
+}
+
+message AddressBook {
+  repeated Person people = 1;
+}
+
+service MemberServiceV2 {
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc test(AddressBook) returns (AddressBook);
+}

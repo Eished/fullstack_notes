@@ -17,7 +17,7 @@
  */
 
 const path = require('path');
-var PROTO_PATH = path.join(__dirname, '../protos/echo.proto');
+var PROTO_PATH = path.join(__dirname, '../protos/login.proto');
 
 var assert = require('assert');
 var async = require('async');
@@ -34,7 +34,7 @@ var packageDefinition = protoLoader.loadSync(
     oneofs: true
   });
 var protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
-var echo = protoDescriptor.grpc.gateway.testing;
+var echo = protoDescriptor.pan.general.member;
 
 /**
  * @param {!Object} call
@@ -54,8 +54,9 @@ function copyMetadata (call) {
  * @param {function():?} callback
  */
 function doEcho (call, callback) {
+  console.log(call.request);
   callback(null, {
-    message: call.request.message
+    ...call.request
   }, copyMetadata(call));
 }
 
@@ -96,12 +97,20 @@ function doServerStreamingEcho (call) {
  * methods it serves.
  * @return {!Server} The new server object
  */
+// function getServer () {
+//   var server = new grpc.Server();
+//   server.addService(echo.EchoService.service, {
+//     echo: doEcho,
+//     echoAbort: doEchoAbort,
+//     serverStreamingEcho: doServerStreamingEcho,
+//   });
+//   return server;
+// }
 function getServer () {
   var server = new grpc.Server();
-  server.addService(echo.EchoService.service, {
-    echo: doEcho,
-    echoAbort: doEchoAbort,
-    serverStreamingEcho: doServerStreamingEcho,
+  server.addService(echo.MemberServiceV2.service, {
+    login: doEcho,
+    test: doEcho
   });
   return server;
 }

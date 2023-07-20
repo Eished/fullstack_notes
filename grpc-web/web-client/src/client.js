@@ -20,6 +20,8 @@ window.$ = require('jquery')
 const { EchoRequest,
   ServerStreamingEchoRequest } = require('./echo_pb.js');
 const { EchoServiceClient } = require('./echo_grpc_web_pb.js');
+const { LoginRequest, AddressBook } = require('./login_pb.js')
+const { MemberServiceV2Client } = require('./login_grpc_web_pb.js')
 const { EchoApp } = require('./echoapp.js');
 const grpc = {};
 grpc.web = require('grpc-web');
@@ -63,8 +65,9 @@ var echoService = new EchoServiceClient('http://' + window.location.hostname + '
 var echoApp = new EchoApp(
   echoService,
   {
-    EchoRequest: EchoRequest,
-    ServerStreamingEchoRequest: ServerStreamingEchoRequest
+    LoginRequest: LoginRequest,
+    AddressBook: AddressBook
+    // ServerStreamingEchoRequest: ServerStreamingEchoRequest
   }
 );
 

@@ -38,7 +38,7 @@ echoapp.EchoApp.addMessage = function (message, cssClass) {
   $("#first").after(
     $("<div/>").addClass("row").append(
       $("<h2/>").append(
-        $("<span/>").addClass("label " + cssClass).text(message))));
+        $("<span/>").addClass("label " + cssClass).text(JSON.stringify(message)))));
 };
 
 /**
@@ -71,6 +71,74 @@ echoapp.EchoApp.prototype.echo = function (msg) {
       } else {
         setTimeout(function () {
           echoapp.EchoApp.addRightMessage(response.getMessage());
+        }, echoapp.EchoApp.INTERVAL);
+      }
+    });
+  call.on('status', function (status) {
+    if (status.metadata) {
+      console.log("Received metadata");
+      console.log(status.metadata);
+    }
+  });
+};
+
+echoapp.EchoApp.prototype.Login = function (msg) {
+  echoapp.EchoApp.addLeftMessage(msg);
+  var unaryRequest = new this.ctors.LoginRequest();
+  // unaryRequest.setPhase(1);
+  // unaryRequest.setPhasecheckexistencevalue('');
+  // unaryRequest.setPhasecheckexistencecountrycode('TW');
+  // unaryRequest.setAppid('jkforum');
+  // unaryRequest.setLogintype(2);
+
+  unaryRequest.setPhase(2);
+  unaryRequest.setPhasesessiontoken('');
+  unaryRequest.setPhaseinputcodevalue('');
+  unaryRequest.setPhaseinputcodequesindex(-1);
+  unaryRequest.setAppid('jkforum');
+  unaryRequest.setLogintype(2);
+  var call = this.echoService.login(unaryRequest,
+    {},
+    function (err, response) {
+      if (err) {
+        echoapp.EchoApp.addRightMessage('Error code: ' + err.code + ' "' +
+          err.message + '"');
+      } else {
+        setTimeout(function () {
+          echoapp.EchoApp.addRightMessage(response.getPhasecheckexistencevalue());
+        }, echoapp.EchoApp.INTERVAL);
+      }
+    });
+  call.on('status', function (status) {
+    if (status.metadata) {
+      console.log("Received metadata");
+      console.log(status.metadata);
+    }
+  });
+};
+
+echoapp.EchoApp.prototype.Test = function (msg) {
+  echoapp.EchoApp.addLeftMessage(msg);
+  var addressBook = new this.ctors.AddressBook();
+  console.log(addressBook);
+  person = addressBook.addPeople()
+  person.setId(1234)
+  person.setName("kished")
+  person.setEmail("kished@gmail.com")
+  phone = person.addPhones()
+  phone.setNumber("555-43210900")
+  phone.setType(1)
+  var call = this.echoService.test(addressBook,
+    {},
+    function (err, response) {
+      if (err) {
+        echoapp.EchoApp.addRightMessage('Error code: ' + err.code + ' "' +
+          err.message + '"');
+      } else {
+        setTimeout(function () {
+          console.log(response.getPeopleList());
+          echoapp.EchoApp.addRightMessage(response.getPeopleList()[0].getName
+            ());
         }, echoapp.EchoApp.INTERVAL);
       }
     });
@@ -136,23 +204,30 @@ echoapp.EchoApp.prototype.repeatEcho = function (msg, count) {
  * @param {Object} e event
  * @return {boolean} status
  */
-echoapp.EchoApp.prototype.send = function (e) {
-  var msg = $("#msg").val().trim();
-  $("#msg").val(''); // clear the text box
-  if (!msg) return false;
+// echoapp.EchoApp.prototype.send = function (e) {
+//   var msg = $("#msg").val().trim();
+//   $("#msg").val(''); // clear the text box
+//   if (!msg) return false;
 
-  if (msg.indexOf(' ') > 0) {
-    var count = msg.substr(0, msg.indexOf(' '));
-    if (/^\d+$/.test(count)) {
-      this.repeatEcho(msg.substr(msg.indexOf(' ') + 1), count);
-    } else if (count == 'err') {
-      this.echoError(msg.substr(msg.indexOf(' ') + 1));
-    } else {
-      this.echo(msg);
-    }
-  } else {
-    this.echo(msg);
-  }
+//   if (msg.indexOf(' ') > 0) {
+//     var count = msg.substr(0, msg.indexOf(' '));
+//     if (/^\d+$/.test(count)) {
+//       this.repeatEcho(msg.substr(msg.indexOf(' ') + 1), count);
+//     } else if (count == 'err') {
+//       this.echoError(msg.substr(msg.indexOf(' ') + 1));
+//     } else {
+//       this.echo(msg);
+//     }
+//   } else {
+//     this.echo(msg);
+//   }
+
+//   return false;
+// };
+echoapp.EchoApp.prototype.send = function (e) {
+  const msg = 'login'
+  this.Login(msg)
+  // this.Test('test')
 
   return false;
 };
